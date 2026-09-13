@@ -3,6 +3,11 @@
 # against the policy file for that workload (or generates it the first time), validates the result against the
 # CiliumNetworkPolicy CRD offline, and opens a pull request with the diff. Nothing reaches a cluster until the PR
 # merges and the reconciler picks it up. cf2cnp stays git-agnostic; this file is the integration.
+#
+# Prerequisite (first-run finding, demo 32): the repository's Actions setting "Allow GitHub Actions to create and
+# approve pull requests" must be on, or the last step fails with "GitHub Actions is not permitted to create or approve
+# pull requests" — the `permissions:` block below is necessary but not sufficient. Organisations that keep the setting
+# off give the step a token of its own (a GitHub App or a PAT via `token:`) instead.
 name: Policy from flows → pull request
 
 on:
